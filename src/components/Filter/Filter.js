@@ -5,15 +5,16 @@ import {
   StyledForm,
 } from './Filter.styled';
 
-import { useDebouncedCallback } from 'use-debounce';
-import { useDispatch } from 'react-redux';
-import { changeFilter } from '../../redux/filterSlice';
+import { getFilter } from 'redux/app/app-selectors';
+import { useSelector, useDispatch } from 'react-redux';
+import { filterContacts } from 'redux/contacts/contacts-actions';
 
 const Filter = () => {
   const dispatch = useDispatch();
-  const debouncedOnChange = useDebouncedCallback(value => {
-    dispatch(changeFilter(value));
-  }, 500);
+  const filter = useSelector(getFilter);
+  // const debouncedOnChange = useDebouncedCallback(value => {
+  //   dispatch(changeFilter(value));
+  // }, 500);
 
   return (
     <StyledForm>
@@ -21,7 +22,9 @@ const Filter = () => {
         <StyledSpan>Find contacts by name</StyledSpan>
         <StyledInput
           type="text"
-          onChange={e => debouncedOnChange(e.target.value)}
+          onChange={e => dispatch(filterContacts(e.currentTarget.value))}
+          value={filter}
+          placeholder="Search.."
         />
       </StyledLabel>
     </StyledForm>

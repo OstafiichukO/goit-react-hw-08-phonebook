@@ -1,46 +1,36 @@
-import { combineReducers } from 'redux';
-import { createReducer } from '@reduxjs/toolkit';
+import { combineReducers, createReducer } from '@reduxjs/toolkit';
 import {
-  fetchContactsRequest,
-  fetchContactsSuccess,
-  fetchContactsError,
-  addContactRequest,
-  addContactSuccess,
-  addContactError,
-  deleteContactRequest,
-  deleteContactSuccess,
-  deleteContactError,
-  changeFilter,
-} from './app-actions';
+  addContact,
+  fetchContacts,
+  removeContact,
+} from './app-operations';
+import { filterContacts } from './app-actions';
 
-const items = createReducer([], {
-  [fetchContactsSuccess]: (_, { payload }) => payload,
-  [addContactSuccess]: (state, { payload }) => [...state, payload],
-  [deleteContactSuccess]: (state, { payload }) =>
-    state.filter(({ id }) => id !== payload),
+export const contactList = createReducer([], {
+  [fetchContacts.fulfilled]: (_, { payload }) => payload,
+  [addContact.fulfilled]: (state, { payload }) => [...state, payload],
+  [removeContact.fulfilled]: (state, { payload }) => {
+    return state.filter(({ id }) => id !== payload);
+  },
 });
 
-const loading = createReducer(false, {
-  [fetchContactsRequest]: () => true,
-  [fetchContactsSuccess]: () => false,
-  [fetchContactsError]: () => false,
-  [addContactRequest]: () => true,
-  [addContactSuccess]: () => false,
-  [addContactError]: () => false,
-  [deleteContactRequest]: () => true,
-  [deleteContactSuccess]: () => false,
-  [deleteContactError]: () => false,
+export const contactFilter = createReducer('', {
+  [filterContacts]: (_, { payload }) => payload,
 });
 
-const filter = createReducer('', {
-  [changeFilter]: (_, { payload }) => payload,
-});
+export const error = createReducer(null, {
+  [addContact.rejected]: (_, { payload }) => payload,
+  [addContact.pending]: () => null,
 
-const error = createReducer(null, {});
+  [fetchContacts.rejected]: (_, { payload }) => payload,
+  [fetchContacts.pending]: () => null,
+
+  [removeContact.rejected]: (_, { payload }) => payload,
+  [removeContact.pending]: () => null,
+});
 
 export default combineReducers({
-  items,
-  filter,
-  loading,
+  contactList,
+  contactFilter,
   error,
 });

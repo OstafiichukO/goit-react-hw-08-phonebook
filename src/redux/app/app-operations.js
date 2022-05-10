@@ -1,55 +1,44 @@
 import axios from 'axios';
-import {
-  fetchContactsRequest,
-  fetchContactsSuccess,
-  fetchContactsError,
-  addContactRequest,
-  addContactSuccess,
-  addContactError,
-  deleteContactRequest,
-  deleteContactSuccess,
-  deleteContactError,
-} from './app-actions';
+import { createAsyncThunk } from '@reduxjs/toolkit';
 
-// GET @ /contacts
-const fetchContacts = () => async dispatch => {
-  dispatch(fetchContactsRequest());
+axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
 
-  try {
-    const { data } = await axios.get('/contacts');
-    dispatch(fetchContactsSuccess(data));
-  } catch (error) {
-    dispatch(fetchContactsError(error.message));
+export const addContact = createAsyncThunk(
+  'contacts/addContacts',
+  async contact => {
+    try {
+      const { data } = await axios.post('/contacts', contact);
+      return data;
+    } catch (error) {
+      //error
+    }
   }
-};
+);
 
-// POST @ /contacts
-const addContact = description => dispatch => {
-  const contact = {
-    description,
-    completed: false,
-  };
+export const fetchContacts = createAsyncThunk(
+  'contacts/fetchContacts',
+  async () => {
+    try {
+      const { data } = await axios.get(`/contacts`);
+      return data;
+    } catch (error) {
+      //error
+    }
+  }
+);
 
-  dispatch(addContactRequest());
-
-  axios
-    .post('/contacts', contact)
-    .then(({ data }) => dispatch(addContactSuccess(data)))
-    .catch(error => dispatch(addContactError(error)));
-};
-
-const deleteContact = contactId => dispatch => {
-  dispatch(deleteContactRequest());
-
-  axios
-    .delete(`./contacts/${contactId}`)
-    .then(() => dispatch(deleteContactSuccess(contactId)))
-    .catch(error => dispatch(deleteContactError(error.message)));
-};
-
-const contactsOperations = {
-  fetchContacts,
-  addContact,
-  deleteContact,
-};
-export default contactsOperations;
+export const removeContact = createAsyncThunk(
+  'contacts/removeContact',
+  async contactId => {
+    try {
+      const response = await axios.delete(`/contacts/${contactId}`);
+      if (response.status === 200) {
+        return contactId;
+      } else {
+        throw new Error({ message: 'error' });
+      }
+    } catch (error) {
+      //error
+    }
+  }
+);

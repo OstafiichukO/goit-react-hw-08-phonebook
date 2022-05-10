@@ -1,4 +1,4 @@
-import ContainerEl from './Container.styled';
+import { ContainerEl } from './Container.styled';
 
 const Container = ({ children }) => {
   return <ContainerEl>{children}</ContainerEl>;

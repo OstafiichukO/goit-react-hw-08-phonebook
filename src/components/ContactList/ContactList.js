@@ -1,37 +1,39 @@
-import { StyledUl } from './ContactList.styled';
-import ContactItem from './ContactItem';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { getFilterContacts } from 'redux/app/app-selectors';
+import { removeContact, fetchContacts } from 'redux/app/app-operations';
+import {
+  StyledUl,
+  StyledLi,
+  StyledSpan,
+  StyledButton,
+} from './ContactList.styled';
 
-import { useSelector } from 'react-redux';
-import { useGetContactsQuery } from 'redux/contactApi';
-import BounceLoader from 'react-spinners/BounceLoader';
-import { css } from '@emotion/react';
+const ContactList = () => {
+  const contacts = useSelector(getFilterContacts);
+  const dispatch = useDispatch();
 
-const ContactsList = () => {
-  const { data, isFetching } = useGetContactsQuery();
-  const filterValue = useSelector(state => state.filter.value);
-  const filteredContacts = data?.filter(({ name }) =>
-    name.toLowerCase().includes(filterValue.toLowerCase())
-  );
-
-  const override = css`
-    display: block;
-    margin: 0 auto;
-    border-color: red;
-  `;
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
 
   return (
-    <>
-      <StyledUl>
-        {isFetching && !data && (
-          <BounceLoader color="blue" css={override} size={100} />
-        )}
-        {filteredContacts &&
-          filteredContacts.map(contact => {
-            return <ContactItem key={contact.id} contact={contact} />;
-          })}
-      </StyledUl>
-    </>
+    <StyledUl>
+      {contacts.map(({ id, name, number }) => (
+        <StyledLi key={id}>
+          <StyledSpan>
+            &#9742; {name}: {number}
+          </StyledSpan>
+          <StyledButton
+            type="button"
+            id={id}
+            onClick={() => dispatch(removeContact(id))}
+          >
+            Delete
+          </StyledButton>
+        </StyledLi>
+      ))}
+    </StyledUl>
   );
 };
-
-export default ContactsList;
+export default ContactList;
