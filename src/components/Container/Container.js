@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { StyledSection, StyledDiv } from './Container.styled';
 
 const Container = ({ title, children }) => {
@@ -14,6 +14,6 @@ const Container = ({ title, children }) => {
 
 export default Container;
 
-Container.propTypes = {
-  title: PropTypes.string.isRequired,
-};
+// Container.propTypes = {
+//   title: PropTypes.string.isRequired,
+// };

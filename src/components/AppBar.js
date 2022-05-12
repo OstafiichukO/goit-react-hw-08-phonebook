@@ -19,7 +19,7 @@ const styles = {
 
 const AppBar = () => {
   const isLoggedIn = useSelector(getLoggedIn);
-  console.log(isLoggedIn);
+  console.log('Залогінився? >', isLoggedIn);
   // console.log(axios.defaults);
   return (
     <div>

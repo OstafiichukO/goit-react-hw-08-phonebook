@@ -13,6 +13,7 @@
     "axios": "^0.27.2",
     "gh-pages": "^3.2.3",
     "modern-normalize": "^1.1.0",
+    "normalize.css": "^8.0.1",
     "notiflix": "^3.2.5",
     "prop-types": "^15.8.1",
     "react": "^17.0.2",

@@ -38,11 +38,11 @@ const LoginView = () => {
 
   return (
     <div>
-      <h1>Страница логина</h1>
+      <h1>Login page</h1>
 
       <form onSubmit={handleSubmit} style={styles.form} autoComplete="off">
         <label style={styles.label}>
-          Почта
+          Email
           <input
             type="email"
             name="email"
@@ -52,7 +52,7 @@ const LoginView = () => {
         </label>
 
         <label style={styles.label}>
-          Пароль
+          Password
           <input
             type="password"
             name="password"

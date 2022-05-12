@@ -24,4 +24,3 @@ export const AuthNav = () => {
     </div>
   );
 };
-

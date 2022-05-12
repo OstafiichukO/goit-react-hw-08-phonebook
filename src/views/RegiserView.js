@@ -46,7 +46,7 @@ const RegisterView = () => {
 
       <form onSubmit={handleSubmit} style={styles.form} autoComplete="off">
         <label style={styles.label}>
-          Имя
+          Name
           <input
             type="text"
             name="name"
@@ -56,7 +56,7 @@ const RegisterView = () => {
         </label>
 
         <label style={styles.label}>
-          Почта
+          Email
           <input
             type="email"
             name="email"
@@ -66,7 +66,7 @@ const RegisterView = () => {
         </label>
 
         <label style={styles.label}>
-          Пароль
+          Password
           <input
             type="password"
             name="password"
@@ -75,7 +75,7 @@ const RegisterView = () => {
           />
         </label>
 
-        <button type="submit">Зарегистрироваться</button>
+        <button type="submit">Ragistration</button>
       </form>
     </div>
   );
