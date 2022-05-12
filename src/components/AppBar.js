@@ -4,6 +4,7 @@ import { Navigation } from './Navigation';
 import { UserMenu } from './UserMenu/UserMenu';
 import { useSelector } from 'react-redux';
 import { getLoggedIn } from 'redux/auth/auth-selectors';
+// import axios from 'axios';
 
 const styles = {
   header: {
@@ -16,8 +17,10 @@ const styles = {
   },
 };
 
-export const AppBar = () => {
+const AppBar = () => {
   const isLoggedIn = useSelector(getLoggedIn);
+  console.log(isLoggedIn);
+  // console.log(axios.defaults);
   return (
     <div>
       <header style={styles.header}>
@@ -28,3 +31,5 @@ export const AppBar = () => {
     </div>
   );
 };
+
+export default AppBar;

@@ -13,24 +13,24 @@ const styles = {
   },
 };
 
-export default function RegisterView() {
+const RegisterView = () => {
   const dispatch = useDispatch();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleChange = ({ target: { name, value } }) => {
-    switch (name) {
-      case 'name':
-        return setName(value);
-      case 'email':
-        return setEmail(value);
-      case 'password':
-        return setPassword(value);
-      default:
-        return;
-    }
-  };
+  // const handleChange = ({ target: { name, value } }) => {
+  //   switch (name) {
+  //     case 'name':
+  //       return setName(value);
+  //     case 'email':
+  //       return setEmail(value);
+  //     case 'password':
+  //       return setPassword(value);
+  //     default:
+  //       return;
+  //   }
+  // };
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -47,7 +47,12 @@ export default function RegisterView() {
       <form onSubmit={handleSubmit} style={styles.form} autoComplete="off">
         <label style={styles.label}>
           Имя
-          <input type="text" name="name" value={name} onChange={handleChange} />
+          <input
+            type="text"
+            name="name"
+            value={name}
+            onChange={e => setName(e.currentTarget.value)}
+          />
         </label>
 
         <label style={styles.label}>
@@ -56,7 +61,7 @@ export default function RegisterView() {
             type="email"
             name="email"
             value={email}
-            onChange={handleChange}
+            onChange={e => setEmail(e.currentTarget.value)}
           />
         </label>
 
@@ -66,7 +71,7 @@ export default function RegisterView() {
             type="password"
             name="password"
             value={password}
-            onChange={handleChange}
+            onChange={e => setPassword(e.currentTarget.value)}
           />
         </label>
 
@@ -74,4 +79,6 @@ export default function RegisterView() {
       </form>
     </div>
   );
-}
+};
+
+export default RegisterView;

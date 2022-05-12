@@ -11,7 +11,7 @@ import {
 } from './AddContact.styled';
 import Notiflix from 'notiflix';
 
-export const AddContact = () => {
+const AddContact = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
   const contacts = useSelector(getContacts);
@@ -66,3 +66,5 @@ export const AddContact = () => {
     </>
   );
 };
+
+export default AddContact;

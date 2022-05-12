@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { App } from './components/App';
+import App from './App';
 import './index.css';
+import 'modern-normalize/modern-normalize.css';
 
 import { store, persistor } from './redux/store';
 import { BrowserRouter } from 'react-router-dom';

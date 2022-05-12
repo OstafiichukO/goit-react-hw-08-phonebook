@@ -7,7 +7,7 @@ import {
 
 import { getFilter } from 'redux/app/app-selectors';
 import { useSelector, useDispatch } from 'react-redux';
-import { filterContacts } from 'redux/contacts/contacts-actions';
+import { filterContacts } from '../../redux/app/app-actions';
 
 const Filter = () => {
   const dispatch = useDispatch();

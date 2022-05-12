@@ -2,18 +2,20 @@ import { useEffect, Suspense, lazy } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { fetchCurrentUser } from 'redux/auth/auth-operations';
-import { PrivateRoute } from './Routes/PrivateRoute';
-import { PublicRoute } from './Routes/PublicRoute';
+import { PrivateRoute } from './components/Routes/PrivateRoute';
+import { PublicRoute } from './components/Routes/PublicRoute';
 import { getCurrentRefresh } from 'redux/auth/auth-selectors';
-import Container from './Container';
+import Container from './components/Container';
 
-const AppBar = lazy(() => import('./AppBar'));
-const RegisterView = lazy(() => import('views/RegiserView'));
-const LoginView = lazy(() => import('views/LoginView'));
-const HomePageView = lazy(() => import('views/HomeView'));
-const ContactsView = lazy(() => import('views/ContactsView'));
+const AppBar = lazy(() => import('./components/AppBar'));
+const RegisterView = lazy(() => import('./views/RegiserView'));
+const LoginView = lazy(() => import('./views/LoginView'));
+const HomePageView = lazy(() => import('./views/HomeView'));
+const ContactsView = lazy(() => import('./views/ContactsView'));
 
-export const App = () => {
+//  const MyComponent = lazy(() => import('./MyComponent'));
+
+const App = () => {
   const dispatch = useDispatch();
   const refresh = useSelector(getCurrentRefresh);
 
@@ -59,3 +61,5 @@ export const App = () => {
     )
   );
 };
+
+export default App;
