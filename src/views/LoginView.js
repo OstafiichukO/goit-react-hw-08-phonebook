@@ -1,17 +1,14 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { logIn } from '../redux/auth/auth-operations';
-
-const styles = {
-  form: {
-    width: 320,
-  },
-  label: {
-    display: 'flex',
-    flexDirection: 'column',
-    marginBottom: 15,
-  },
-};
+import {
+  StyledForm,
+  StyledLabel,
+  StyledSpan,
+  StyledInput,
+  StyledButton,
+  Wrapper,
+} from './View.styled';
 
 const LoginView = () => {
   const dispatch = useDispatch();
@@ -37,33 +34,33 @@ const LoginView = () => {
   };
 
   return (
-    <div>
+    <Wrapper>
       <h1>Login page</h1>
 
-      <form onSubmit={handleSubmit} style={styles.form} autoComplete="off">
-        <label style={styles.label}>
-          Email
-          <input
+      <StyledForm onSubmit={handleSubmit} autoComplete="off">
+        <StyledLabel>
+          <StyledSpan>Email</StyledSpan>
+          <StyledInput
             type="email"
             name="email"
             value={email}
             onChange={handleChange}
           />
-        </label>
+        </StyledLabel>
 
-        <label style={styles.label}>
-          Password
-          <input
+        <StyledLabel>
+          <StyledSpan>Password</StyledSpan>
+          <StyledInput
             type="password"
             name="password"
             value={password}
             onChange={handleChange}
           />
-        </label>
+        </StyledLabel>
 
-        <button type="submit">Войти</button>
-      </form>
-    </div>
+        <StyledButton type="submit">Login</StyledButton>
+      </StyledForm>
+    </Wrapper>
   );
 };
 

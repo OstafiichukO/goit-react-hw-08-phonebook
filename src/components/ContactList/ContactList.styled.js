@@ -16,10 +16,11 @@ export const StyledButton = styled.button`
   font-family: italic;
   border-radius: 5px;
   color: white;
-  background-color: #4d7aff;
+  background-color: #4267b2;
   cursor: pointer;
   &:hover {
-    background-color: #ca2121;
+    background-color: #898f9c;
+    ${'' /* color: black; */}
   }
 `;
 

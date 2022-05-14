@@ -1,5 +1,11 @@
 import styled from '@emotion/styled';
 
+export const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
 export const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
@@ -46,5 +52,8 @@ export const StyledButton = styled.button`
   background-color: #4267b2;
   border: none;
   cursor: pointer;
-
+  &:hover {
+    background-color: #898f9c;
+    color: white;
+  }
 `;

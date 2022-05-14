@@ -8,18 +8,19 @@ import { getLoggedIn } from 'redux/auth/auth-selectors';
 
 const styles = {
   header: {
-    backgroundColor: 'brown',
+    backgroundColor: '#4267B2',
     padding: 20,
     textAlign: 'center',
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
+    height: 85,
   },
 };
 
 const AppBar = () => {
   const isLoggedIn = useSelector(getLoggedIn);
-  console.log('Залогінився? >', isLoggedIn);
+  // console.log('Залогінився? >', isLoggedIn);
   // console.log(axios.defaults);
   return (
     <div>

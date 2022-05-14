@@ -4,8 +4,9 @@ export const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 500px;
   padding: 5px;
-  border: 2px solid #4d7aff;
+  border: 2px solid #4267b2;
   border-radius: 7px;
 `;
 

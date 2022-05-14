@@ -8,7 +8,7 @@ export const addContact = createAsyncThunk(
       const { data } = await axios.post('/contacts', contact);
       return data;
     } catch (error) {
-      console.log(error.message);
+      // console.log(error.message);
     }
   }
 );
@@ -20,7 +20,7 @@ export const fetchContacts = createAsyncThunk(
       const { data } = await axios.get(`/contacts`);
       return data;
     } catch (error) {
-      console.log(error.message);
+      // console.log(error.message);
     }
   }
 );
@@ -36,7 +36,7 @@ export const removeContact = createAsyncThunk(
         throw new Error({ message: 'error' });
       }
     } catch (error) {
-      console.log(error.message);
+      // console.log(error.message);
     }
   }
 );

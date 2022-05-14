@@ -5,7 +5,7 @@ import { fetchCurrentUser } from 'redux/auth/auth-operations';
 import { PrivateRoute } from './components/Routes/PrivateRoute';
 import { PublicRoute } from './components/Routes/PublicRoute';
 import { getCurrentRefresh } from 'redux/auth/auth-selectors';
-import Container from './components/Container';
+// import Container from './components/Container';
 
 const AppBar = lazy(() => import('./components/AppBar'));
 const RegisterView = lazy(() => import('./views/RegiserView'));
@@ -25,7 +25,7 @@ const App = () => {
 
   return (
     !refresh && (
-      <Container>
+      <>
         <Suspense fallback={<p>Loading...</p>}>
           <AppBar />
           <Routes>
@@ -57,7 +57,7 @@ const App = () => {
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
         </Suspense>
-      </Container>
+      </>
     )
   );
 };

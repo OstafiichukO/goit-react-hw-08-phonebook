@@ -1,36 +1,20 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { register } from '../redux/auth/auth-operations';
-
-const styles = {
-  form: {
-    width: 320,
-  },
-  label: {
-    display: 'flex',
-    flexDirection: 'column',
-    marginBottom: 15,
-  },
-};
+import {
+  StyledForm,
+  StyledLabel,
+  StyledSpan,
+  StyledInput,
+  StyledButton,
+  Wrapper,
+} from './View.styled';
 
 const RegisterView = () => {
   const dispatch = useDispatch();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
-  // const handleChange = ({ target: { name, value } }) => {
-  //   switch (name) {
-  //     case 'name':
-  //       return setName(value);
-  //     case 'email':
-  //       return setEmail(value);
-  //     case 'password':
-  //       return setPassword(value);
-  //     default:
-  //       return;
-  //   }
-  // };
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -41,43 +25,43 @@ const RegisterView = () => {
   };
 
   return (
-    <div>
-      <h1>Страница регистрации</h1>
+    <Wrapper>
+      <h1>Register page</h1>
 
-      <form onSubmit={handleSubmit} style={styles.form} autoComplete="off">
-        <label style={styles.label}>
-          Name
-          <input
+      <StyledForm onSubmit={handleSubmit} autoComplete="off">
+        <StyledLabel>
+          <StyledSpan>Name</StyledSpan>
+          <StyledInput
             type="text"
             name="name"
             value={name}
             onChange={e => setName(e.currentTarget.value)}
           />
-        </label>
+        </StyledLabel>
 
-        <label style={styles.label}>
-          Email
-          <input
+        <StyledLabel>
+          <StyledSpan>Email</StyledSpan>
+          <StyledInput
             type="email"
             name="email"
             value={email}
             onChange={e => setEmail(e.currentTarget.value)}
           />
-        </label>
+        </StyledLabel>
 
-        <label style={styles.label}>
-          Password
-          <input
+        <StyledLabel>
+          <StyledSpan>Password</StyledSpan>
+          <StyledInput
             type="password"
             name="password"
             value={password}
             onChange={e => setPassword(e.currentTarget.value)}
           />
-        </label>
+        </StyledLabel>
 
-        <button type="submit">Ragistration</button>
-      </form>
-    </div>
+        <StyledButton type="submit">Ragistration</StyledButton>
+      </StyledForm>
+    </Wrapper>
   );
 };
 
